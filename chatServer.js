@@ -30,7 +30,7 @@ io.on('connect', function(socket) {
   var questionNum = 0; // keep count of question, used for IF condition.
   socket.on('loaded', function(){// we wait until the client has loaded and contacted us that it is ready to go.
 
-  socket.emit('answer',"Hey, Hello I am a travelbot."); //We start with the introduction;
+  socket.emit('answer',"Aloha,  I am a travelbot."); //We start with the introduction;
   setTimeout(timedQuestion, 2500, socket,"What is your Name?"); // Wait a moment and respond with a question.
 
 });
@@ -51,40 +51,40 @@ function bot(data,socket,questionNum) {
 
 /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
-  answer= 'Hello ' + input + ' :-)';// output response
+  answer= 'Aloha ' + input + ' :-)';// output response
   waitTime =2000;
-  question = 'How old are you?';			    	// load next question
+  question = 'Where would you like to travel?';			    	// load next question
   }
   else if (questionNum == 1) {
-  answer= 'Really ' + input + ' Years old? So that means you where born in: ' + (2018-parseInt(input));// output response
+  answer= 'Awesome, ' + input + ' has amazing views!';// output response
   waitTime =2000;
-  question = 'Where do you live?';			    	// load next question
+  question = 'What would you like to do at this place?';			    	// load next question
   }
   else if (questionNum == 2) {
-  answer= ' Cool! I have never been to ' + input+'.';
+  answer= 'Awesome! I also enjoy ' + input+'.';
   waitTime =2000;
-  question = 'Whats your favorite Color?';			    	// load next question
+  question = 'What would you like to see at this place?';			    	// load next question
   }
   else if (questionNum == 3) {
-  answer= 'Ok, ' + input+' it is.';
-  socket.emit('changeBG',input.toLowerCase());
+  answer= 'Ok, let me show you a picture of ' + input;
+  socket.emit('changeBG',input.toLowerCase()); // change this to load a picture
   waitTime = 2000;
-  question = 'Can you still read the font?';			    	// load next question
+  question = 'Do you like the picture I showed you?';			    	// load next question
   }
   else if (questionNum == 4) {
     if(input.toLowerCase()==='yes'|| input===1){
-      answer = 'Perfect!';
+      answer = 'Perfect! Let me connect your bank account so that you can donate money to this place :D';
       waitTime =2000;
-      question = 'Whats your favorite place?';
+      //question = 'Whats your favorite place?';
     }
     else if(input.toLowerCase()==='no'|| input===0){
         socket.emit('changeFont','white'); /// we really should look up the inverse of what we said befor.
-        answer='How about now?'
+        answer='Oh no! Let me try to improve my skills so that I can find a better picture next time.'
         question='';
         waitTime =0;
         questionNum--; // Here we go back in the question number this can end up in a loop
     }else{
-      answer=' I did not understand you. Can you please answer with simply with yes or no.'
+      answer='So you do like the picture?'
       question='';
       questionNum--;
       waitTime =0;
@@ -92,7 +92,7 @@ function bot(data,socket,questionNum) {
   // load next question
   }
   else{
-    answer= 'I have nothing more to say!';// output response
+    answer= 'I suggest you also tryout flying in a helicopter!';// output response
     waitTime =0;
     question = '';
   }
