@@ -88,7 +88,7 @@ function bot(data,socket,questionNum) {
   question = 'Wanna try something very fancy?';             // load next question
   }
   else{
-    if (answer === 'yes') {
+    if (input.toLowerCase() === 'yes') {
     answer= 'I suggest you also tryout flying in a helicopter!';// output response
     socket.emit('changeBG','LightSkyBlue');
     waitTime =0;
