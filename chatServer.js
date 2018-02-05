@@ -51,25 +51,26 @@ function bot(data,socket,questionNum) {
 
 /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
-  //socket.emit('changeFont','white');
-  socket.emit('changeBG','red');
-  answer= 'Aloha ' + input + ' :-)';// output response
+  answer= 'Aloha my ' + input + ' :-)';// output response
+  socket.emit('changeBG', 'blue');
   waitTime =2000;
   question = 'Where would you like to travel?';			    	// load next question
   }
   else if (questionNum == 1) {
   answer= 'Awesome, ' + input + ' has amazing views!';// output response
+  socket.emit('changeBG', 'red');
   waitTime =2000;
   question = 'What would you like to do at this place?';			    	// load next question
   }
   else if (questionNum == 2) {
   answer= 'Awesome! I also enjoy ' + input+'.';
+  socket.emit('changeBG', 'green');
   waitTime =2000;
   question = 'What would you like to see at this place?';			    	// load next question
   }
   else if (questionNum == 3) {
   answer= 'Ok, let me show you a picture of ' + input;
-  //socket.emit('changeBG',input.toLowerCase()); // change this to load a picture
+  socket.emit('changeBG',input.toLowerCase()); // change this to load a picture
   waitTime = 2000;
   question = 'Do you like the picture I showed you?';			    	// load next question
   }
