@@ -52,51 +52,47 @@ function bot(data,socket,questionNum) {
 /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
   answer= 'Aloha my ' + input + ' :-)';// output response
-  socket.emit('changeFont','white');
   socket.emit('changeBG', 'blue');
   waitTime =2000;
   question = 'Where would you like to travel?';			    	// load next question
   }
   else if (questionNum == 1) {
   answer= 'Awesome, ' + input + ' has amazing views!';// output response
-  socket.emit('changeFont','white');
   socket.emit('changeBG', 'red');
   waitTime =2000;
   question = 'What would you like to do at this place?';			    	// load next question
   }
   else if (questionNum == 2) {
   answer= 'Awesome! I also enjoy ' + input+'.';
-  socket.emit('changeFont','white');
   socket.emit('changeBG', 'green');
   waitTime =2000;
   question = 'What would you like to see at this place?';			    	// load next question
   }
   else if (questionNum == 3) {
-  answer= 'Ok, let me show you a picture of ' + input;
   socket.emit('changeFont','aqua');
+  answer= 'Ok, let me show you a picture of ' + input;
   socket.emit('changeBG','purple'); // change this to load a picture
   waitTime = 2000;
   question = 'Do you like the picture I showed you?';			    	// load next question
   }
   else if (questionNum == 4) {
     if(input.toLowerCase()==='yes'|| input===1){
-      answer = 'Perfect! Let me connect your bank account so that you can donate money to this place :D';
       socket.emit('changeFont','aqua');
+      answer = 'Perfect! Let me connect your bank account so that you can donate money to this place :D';
       socket.emit('changeBG','purple');
       waitTime =2000;
       //question = 'Whats your favorite place?';
     }
     else if(input.toLowerCase()==='no'|| input===0){
-        //socket.emit('changeFont','white'); /// we really should look up the inverse of what we said befor.
+        socket.emit('changeFont','black'); /// we really should look up the inverse of what we said befor.
         answer='Oh no! Let me try to improve my skills so that I can find a better picture next time.'
-        socket.emit('changeFont','black');
         socket.emit('changeBG','aqua');
         question='';
         waitTime =0;
         questionNum--; // Here we go back in the question number this can end up in a loop
     }else{
-      answer='I am very confused!!!'
       socket.emit('changeFont','black');
+      answer='I am very confused!!!'
       socket.emit('changeBG','aqua');
       question='';
       questionNum--;
