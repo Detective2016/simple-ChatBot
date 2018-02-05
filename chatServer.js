@@ -48,6 +48,8 @@ function bot(data,socket,questionNum) {
   var answer;
   var question;
   var waitTime;
+  socket.emit('changeFont','white');
+  socket.emit('changeBG','blue');
 
 /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
@@ -67,7 +69,7 @@ function bot(data,socket,questionNum) {
   }
   else if (questionNum == 3) {
   answer= 'Ok, let me show you a picture of ' + input;
-  socket.emit('changeBG',input.toLowerCase()); // change this to load a picture
+  //socket.emit('changeBG',input.toLowerCase()); // change this to load a picture
   waitTime = 2000;
   question = 'Do you like the picture I showed you?';			    	// load next question
   }
@@ -78,7 +80,7 @@ function bot(data,socket,questionNum) {
       //question = 'Whats your favorite place?';
     }
     else if(input.toLowerCase()==='no'|| input===0){
-        socket.emit('changeFont','white'); /// we really should look up the inverse of what we said befor.
+        //socket.emit('changeFont','white'); /// we really should look up the inverse of what we said befor.
         answer='Oh no! Let me try to improve my skills so that I can find a better picture next time.'
         question='';
         waitTime =0;
