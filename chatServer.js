@@ -51,7 +51,6 @@ function bot(data,socket,questionNum) {
 
 /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
-  socket.emit('changeFont','black');
   answer= 'Aloha ' + input + ' :-)';// output response
   socket.emit('changeBG', 'blue');
   waitTime =2000;
@@ -72,7 +71,6 @@ function bot(data,socket,questionNum) {
   question = 'What would you like to see at this place?';			    	// load next question
   }
   else if (questionNum == 3) {
-  socket.emit('changeFont','aqua');
   answer= 'Ok, let me show you a picture of ' + input;
   socket.emit('changeBG','purple'); // change this to load a picture
   waitTime = 2000;
@@ -80,7 +78,6 @@ function bot(data,socket,questionNum) {
   }
   else if (questionNum == 4) {
     if(input.toLowerCase()==='yes'|| input===1){
-      socket.emit('changeFont','aqua');
       answer = 'Perfect! Let me connect your bank account so that you can donate money to this place :D';
       socket.emit('changeBG','purple');
       waitTime =2000;
