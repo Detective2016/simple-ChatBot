@@ -32,7 +32,7 @@ io.on('connect', function(socket) {
   socket.on('loaded', function(){// we wait until the client has loaded and contacted us that it is ready to go.
 
   socket.emit('answer',"Aloha,  I am a travelbot."); //We start with the introduction;
-  setTimeout(timedQuestion, 500, socket,"What is your Name?"); // Wait a moment and respond with a question.
+  setTimeout(timedQuestion, 1500, socket,"What is your Name?"); // Wait a moment and respond with a question.
 
 });
   socket.on('message', (data)=>{ // If we get a new message from the client we process it;
@@ -84,16 +84,18 @@ function bot(data,socket,questionNum) {
   answer= 'In ' + location + ', there is not much ' + input + ', but you can find more to eat!';
   socket.emit('changeBG','purple');
   
-  waitTime = 1000;
+  waitTime = 2000;
   question = 'Wanna try something very fancy?';             // load next question
   }
   else{
     if (answer == 'yes') {
     answer= 'I suggest you also tryout flying in a helicopter!';// output response
+    socket.emit('changeBG','LightSkyBlue');
     waitTime =0;
     question = '';
     } else {
     answer= 'So sad, I will try to improve next time!';// output response
+    socket.emit('changeBG','tomato');
     waitTime =0;
     question = '';
     }
