@@ -88,7 +88,7 @@ function bot(data,socket,questionNum) {
   question = 'Wanna try something very fancy?';             // load next question
   }
   else{
-    if (answer == 'yes) {
+    if (answer == 'yes') {
     answer= 'I suggest you also tryout flying in a helicopter!';// output response
     waitTime =0;
     question = '';
