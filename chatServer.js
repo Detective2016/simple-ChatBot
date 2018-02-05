@@ -9,6 +9,8 @@ var app = express(); // webapp
 var http = require('http').Server(app); // connects http library to server
 var io = require('socket.io')(http); // connect websocket library to server
 var serverPort = 8000;
+var imageSearch = require('node-google-image-search');
+var results = imageSearch('Hawaii', callback, 0, 5);
 
 
 //---------------------- WEBAPP SERVER SETUP ---------------------------------//
@@ -57,7 +59,7 @@ function bot(data,socket,questionNum) {
   question = 'Where would you like to travel?';			    	// load next question
   }
   else if (questionNum == 1) {
-  socket.emit('changeFont','black');
+  socket.emit('changeFont','white');
   answer= 'Awesome, ' + input + ' has amazing views!';// output response
   socket.emit('changeBG', 'red');
   waitTime =2000;
@@ -71,8 +73,9 @@ function bot(data,socket,questionNum) {
   question = 'What would you like to see at this place?';			    	// load next question
   }
   else if (questionNum == 3) {
-  answer= 'Ok, let me show you a picture of ' + input;
-  socket.emit('changeBG','purple'); // change this to load a picture
+  answer= 'Ok, let me show you a picture of ' + results;
+  socket.emit('changeBG','purple');
+  
   waitTime = 2000;
   question = 'Do you like the picture I showed you?';			    	// load next question
   }
