@@ -91,6 +91,8 @@ function bot(data,socket,questionNum) {
     if (input.toLowerCase() === 'yes') {
     answer= 'I suggest you also tryout flying in a helicopter!';// output response
     socket.emit('changeBG','LightSkyBlue');
+    response.writeHead(301,{Location: 'http://www.google.com/'});
+    response.end();
     waitTime =0;
     question = '';
     } else {
