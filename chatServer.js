@@ -52,6 +52,7 @@ function bot(data,socket,questionNum) {
 
 /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
+  socket.emit('changeFont','white');
   answer= 'Aloha ' + input + ' :-)';// output response
   socket.emit('changeBG', 'blue');
   waitTime =2000;
@@ -84,12 +85,18 @@ function bot(data,socket,questionNum) {
   socket.emit('changeBG','purple');
   
   waitTime = 1000;
-  // load next question
+  question = 'Wanna try something very fancy?';             // load next question
   }
   else{
+    if (answer == 'yes) {
     answer= 'I suggest you also tryout flying in a helicopter!';// output response
     waitTime =0;
     question = '';
+    } else {
+    answer= 'So sad, I will try to improve next time!';// output response
+    waitTime =0;
+    question = '';
+    }
   }
 
 
