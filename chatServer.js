@@ -9,8 +9,7 @@ var app = express(); // webapp
 var http = require('http').Server(app); // connects http library to server
 var io = require('socket.io')(http); // connect websocket library to server
 var serverPort = 8000;
-var imageSearch = require('node-google-image-search');
-var results = imageSearch('Hawaii', callback, 0, 5);
+var location = 'Hawaii';
 
 
 //---------------------- WEBAPP SERVER SETUP ---------------------------------//
@@ -33,7 +32,7 @@ io.on('connect', function(socket) {
   socket.on('loaded', function(){// we wait until the client has loaded and contacted us that it is ready to go.
 
   socket.emit('answer',"Aloha,  I am a travelbot."); //We start with the introduction;
-  setTimeout(timedQuestion, 2500, socket,"What is your Name?"); // Wait a moment and respond with a question.
+  setTimeout(timedQuestion, 500, socket,"What is your Name?"); // Wait a moment and respond with a question.
 
 });
   socket.on('message', (data)=>{ // If we get a new message from the client we process it;
@@ -62,6 +61,7 @@ function bot(data,socket,questionNum) {
   socket.emit('changeFont','white');
   answer= 'Awesome, ' + input + ' has amazing views!';// output response
   socket.emit('changeBG', 'red');
+  location = input;
   waitTime =2000;
   question = 'What would you like to do at this place?';			    	// load next question
   }
@@ -73,34 +73,17 @@ function bot(data,socket,questionNum) {
   question = 'What would you like to see at this place?';			    	// load next question
   }
   else if (questionNum == 3) {
-  answer= 'Ok, let me show you a picture of ' + results;
+  answer= 'In ' + location + ', you can find a lot of ' + input;
   socket.emit('changeBG','purple');
   
   waitTime = 2000;
-  question = 'Do you like the picture I showed you?';			    	// load next question
+  question = 'Any other things you would like to see?';			    	// load next question
   }
   else if (questionNum == 4) {
-    if(input.toLowerCase()==='yes'|| input===1){
-      answer = 'Perfect! Let me connect your bank account so that you can donate money to this place :D';
-      socket.emit('changeBG','purple');
-      waitTime =2000;
-      //question = 'Whats your favorite place?';
-    }
-    else if(input.toLowerCase()==='no'|| input===0){
-        socket.emit('changeFont','black'); /// we really should look up the inverse of what we said befor.
-        answer='Oh no! Let me try to improve my skills so that I can find a better picture next time.'
-        socket.emit('changeBG','aqua');
-        question='';
-        waitTime =0;
-        questionNum = 4; // Here we go back in the question number this can end up in a loop
-    }else{
-      socket.emit('changeFont','black');
-      answer='I am very confused!!!'
-      socket.emit('changeBG','aqua');
-      question='';
-      questionNum = 4;
-      waitTime =0;
-    }
+  answer= 'In ' + location + ', there is not much ' + input + ', but you can find more to eat!';
+  socket.emit('changeBG','purple');
+  
+  waitTime = 1000;
   // load next question
   }
   else{
