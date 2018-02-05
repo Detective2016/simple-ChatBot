@@ -51,18 +51,21 @@ function bot(data,socket,questionNum) {
 
 /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
-  answer= 'Aloha my ' + input + ' :-)';// output response
+  socket.emit('changeFont','black');
+  answer= 'Aloha ' + input + ' :-)';// output response
   socket.emit('changeBG', 'blue');
   waitTime =2000;
   question = 'Where would you like to travel?';			    	// load next question
   }
   else if (questionNum == 1) {
+  socket.emit('changeFont','black');
   answer= 'Awesome, ' + input + ' has amazing views!';// output response
   socket.emit('changeBG', 'red');
   waitTime =2000;
   question = 'What would you like to do at this place?';			    	// load next question
   }
   else if (questionNum == 2) {
+  socket.emit('changeFont','white');
   answer= 'Awesome! I also enjoy ' + input+'.';
   socket.emit('changeBG', 'green');
   waitTime =2000;
@@ -89,13 +92,13 @@ function bot(data,socket,questionNum) {
         socket.emit('changeBG','aqua');
         question='';
         waitTime =0;
-        questionNum--; // Here we go back in the question number this can end up in a loop
+        questionNum = 4; // Here we go back in the question number this can end up in a loop
     }else{
       socket.emit('changeFont','black');
       answer='I am very confused!!!'
       socket.emit('changeBG','aqua');
       question='';
-      questionNum--;
+      questionNum = 4;
       waitTime =0;
     }
   // load next question
