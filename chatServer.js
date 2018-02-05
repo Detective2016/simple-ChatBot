@@ -48,11 +48,11 @@ function bot(data,socket,questionNum) {
   var answer;
   var question;
   var waitTime;
-  socket.emit('changeFont','white');
-  socket.emit('changeBG','blue');
 
 /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
+  //socket.emit('changeFont','white');
+  socket.emit('changeBG','red');
   answer= 'Aloha ' + input + ' :-)';// output response
   waitTime =2000;
   question = 'Where would you like to travel?';			    	// load next question
